@@ -1,0 +1,22 @@
+{
+  "name": "api-server",
+  "version": "1.0.0",
+  "description": "A Fastify API server for school management system",
+  "main": "index.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lavitra8/Fastify-API-Server.git"
+  },
+  "author": "Lavitra and Sahil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lavitra8/Fastify-API-Server/issues"
+  },
+  "homepage": "https://github.com/lavitra8/Fastify-API-Server#readme",
+  "dependencies": {
+    "fastify": "^3.29.0"
+  }
+}
