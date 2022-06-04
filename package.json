@@ -2,9 +2,10 @@
   "name": "api-server",
   "version": "1.0.0",
   "description": "A Fastify API server for school management system",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "node server.js"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,11 @@
   },
   "homepage": "https://github.com/lavitra8/Fastify-API-Server#readme",
   "dependencies": {
-    "fastify": "^3.29.0"
+    "fastify": "^3.29.0",
+    "fastify-swagger": "^5.2.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
   }
 }
