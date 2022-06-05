@@ -1,11 +1,37 @@
 // Require the framework and instantiate it
 const fastify = require("fastify")({ logger: true });
+fastify.register(require('fastify-jwt'), {
+  secret: '##sEcReTkEy##' // should not be done like this (there should be an env variable)
+});
+
+
 
 fastify.register(require('fastify-swagger'), {
   exposeRoute: true,
   routePrefix: '/docs',
   swagger: {
     info: { title: 'fastify-api' },
+  }
+})
+
+let students = require("./students");
+fastify.post("/loginStudent", (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).send({ error: true, msg: 'Mandatory params missing.' });
+      return;
+    }
+    const student = students.find((students) => students.password == password && students.email == email);
+    if (!student) {
+      res.send({ 'login unsucessfull': 'invalid email or password' });
+    } else {
+      let actor = 'student';
+      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      res.status(200).send({ token, email });
+    }
+  } catch (error) {
+    res.send(error);
   }
 })
 
