@@ -19,6 +19,7 @@
   "homepage": "https://github.com/lavitra8/Fastify-API-Server#readme",
   "dependencies": {
     "fastify": "^3.29.0",
+    "fastify-jwt": "^4.2.0",
     "fastify-swagger": "^5.2.0",
     "node": "^17.7.2",
     "uuid": "^8.3.2"

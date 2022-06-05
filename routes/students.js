@@ -1,4 +1,4 @@
-const {getStudents, getStudent, addStudent, deleteStudent, updateStudent} = require('../controllers/students')
+const {getStudents, getStudent, addStudent, deleteStudent, updateStudent, loginStudent} = require('../controllers/students')
 
 //Student Schema
 const Student = {
@@ -97,6 +97,9 @@ function studentRoutes(fastify, options, done) {
   //Update student
   fastify.put("/students/:id", updateStudentOpts);
 
+  //loginStudent
+  fastify.post("/loginStudent", loginStudent);
+  
   done();
 }
 
