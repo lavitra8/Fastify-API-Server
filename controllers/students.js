@@ -1,6 +1,6 @@
 const { v4: uuidv4 } = require('uuid')
 let students = require("../students");
-const fastify = require('fastify');
+const fastify = require('fastify')({ logger: true });
 
 fastify.register(require('fastify-jwt'), {
     secret: '##sEcReTkEy##' // should not be done like this (there should be an env variable)
