@@ -11,6 +11,7 @@ fastify.register(require('fastify-swagger'), {
 
 fastify.register(require('./routes/students'))
 fastify.register(require("./routes/teachers"));
+fastify.register(require("./routes/classes"));
 
 const PORT = 3000
 

@@ -1,0 +1,28 @@
+### GET ALL CLASSES
+GET http://localhost:3000/classes HTTP/1.1
+
+### GET SINGLE CLASS
+GET http://localhost:3000/classes/2 HTTP/1.1
+
+### ADD SINGLE CLASS
+POST http://localhost:3000/classes HTTP/1.1
+Content-Type: application/json
+
+{
+    "class_name": "Biology",
+    "class_teacher_id": "2",
+    "student_list": ["Lavitra Misal", "Sahil Hemnani"]
+}
+
+### DELETE SINGLE CLASS
+DELETE  http://localhost:3000/classes/2 HTTP/1.1
+
+### UPDATE SINGLE CLASS
+PUT http://localhost:3000/classes/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "class_name": "Science",
+    "class_teacher_id": "4",
+    "student_list": ["Ashutosh Manorkar", "Sahil Hemnani"]
+}
