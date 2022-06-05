@@ -1,23 +1,8 @@
 // Require the framework and instantiate it
 const fastify = require("fastify")({ logger: true });
+fastify.register(require('./routes/students'))
+
 const PORT = 3000
-
-const students = require('./students')
-
-// Declare a route
-fastify.get("/students", (request, reply) => {
-  reply.send(students);
-});
-
-//Param ID in request
-fastify.get("/students/:id", (request, reply) => {
-
-  const {id} = request.params
-
-  const student = students.find((students) => students.id === id);
-
-  reply.send(student);
-});
 
 const start = async () => {
   try {

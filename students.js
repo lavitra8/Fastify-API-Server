@@ -1,7 +1,7 @@
 let students = [
   {
-    student_id: "1",
-    email: "lavitramisal@hotmail.com",
+    id: "1",
+    email: "lavitra@hotmail.com",
     password: "password",
     name: "Lavitra Misal",
     gender: "male",
@@ -9,7 +9,7 @@ let students = [
     meta_data: "",
   },
   {
-    student_id: "2",
+    id: "2",
     email: "sahil@hotmail.com",
     password: "password",
     name: "Sahil Hemnani",
@@ -18,7 +18,7 @@ let students = [
     meta_data: "",
   },
   {
-    student_id: "3",
+    id: "3",
     email: "ashutosh@hotmail.com",
     password: "password",
     name: "Ashutosh Manorkar",
@@ -28,4 +28,4 @@ let students = [
   },
 ];
 
-module.exports = students
+module.exports = students;
