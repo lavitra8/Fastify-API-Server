@@ -35,6 +35,50 @@ fastify.post("/loginStudent", (req, res) => {
   }
 })
 
+
+let teachers = require("./teachers");
+fastify.post("/loginTeacher", (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).send({ error: true, msg: 'Mandatory params missing.' });
+      return;
+    }
+    const student = teachers.find((teachers) => teachers.password == password && teachers.email == email);
+    if (!student) {
+      res.send({ 'login unsucessfull': 'invalid email or password' });
+    } else {
+      let actor = 'teacher';
+      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      res.status(200).send({ token, email });
+    }
+  } catch (error) {
+    res.send(error);
+  }
+})
+
+let principal = require("./principal");
+fastify.post("/loginPrincipal", (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).send({ error: true, msg: 'Mandatory params missing.' });
+      return;
+    }
+    const student = principal.find((principal) => principal.password == password && principal.email == email);
+    if (!student) {
+      res.send({ 'login unsucessfull': 'invalid email or password' });
+    } else {
+      let actor = 'teacher';
+      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      res.status(200).send({ token, email });
+    }
+  } catch (error) {
+    res.send(error);
+  }
+})
+
+
 fastify.register(require('./routes/students'))
 fastify.register(require("./routes/teachers"));
 fastify.register(require("./routes/classes"));
