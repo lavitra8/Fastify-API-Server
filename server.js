@@ -34,6 +34,14 @@ fastify.post("/loginStudent", (req, res) => {
     res.send(error);
   }
 })
+fastify.get("/authorizeStudent", async (req, res) => {
+  try {
+    await req.verifyJwt();
+    res.send({ 'msg': 'success' });
+  } catch (error) {
+    res.status(400).send({ error });
+  }
+})
 
 
 let teachers = require("./teachers");
@@ -95,4 +103,3 @@ const start = async () => {
 };
 
 start();
-module.exports = fastify;
