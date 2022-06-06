@@ -27,7 +27,7 @@ fastify.post("/loginStudent", (req, res) => {
       res.send({ 'login unsucessfull': 'invalid email or password' });
     } else {
       let actor = 'student';
-      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      const token = fastify.jwt.sign({ email, actor }, { expiredIn: 86400 });
       res.status(200).send({ token, email });
     }
   } catch (error) {
@@ -49,7 +49,7 @@ fastify.post("/loginTeacher", (req, res) => {
       res.send({ 'login unsucessfull': 'invalid email or password' });
     } else {
       let actor = 'teacher';
-      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      const token = fastify.jwt.sign({ email, actor }, { expiredIn: 86400 });
       res.status(200).send({ token, email });
     }
   } catch (error) {
@@ -69,8 +69,8 @@ fastify.post("/loginPrincipal", (req, res) => {
     if (!student) {
       res.send({ 'login unsucessfull': 'invalid email or password' });
     } else {
-      let actor = 'teacher';
-      const token = fastify.jwt.sign({ email, password, actor }, { expiredIn: 86400 });
+      let actor = 'principal';
+      const token = fastify.jwt.sign({ email, actor }, { expiredIn: 86400 });
       res.status(200).send({ token, email });
     }
   } catch (error) {
