@@ -5,7 +5,6 @@ fastify.register(require('fastify-jwt'), {
 });
 
 
-
 fastify.register(require('fastify-swagger'), {
   exposeRoute: true,
   routePrefix: '/docs',
@@ -34,14 +33,25 @@ fastify.post("/loginStudent", (req, res) => {
     res.send(error);
   }
 })
-fastify.get("/authorizeStudent", async (req, res) => {
-  try {
-    await req.verifyJwt();
-    res.send({ 'msg': 'success' });
-  } catch (error) {
-    res.status(400).send({ error });
-  }
+
+/**
+ * Author: Sahil
+ */
+const jwt_decode = require("jwt-decode");
+const { authStudent, authTeacher, authPrincipal } = require("./auth_middleware");
+fastify.post("/authorizeStudent", async (req, res) => {
+  authStudent(req, res, jwt_decode);
 })
+fastify.post("/authorizeTeacher", async (req, res) => {
+  authStudent(req, res, jwt_decode);
+})
+fastify.post("/authorizePrincpal", async (req, res) => {
+  authStudent(req, res, jwt_decode);
+})
+
+/**
+ * Demo for middleware
+ */
 
 
 let teachers = require("./teachers");
