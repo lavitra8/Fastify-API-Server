@@ -1,16 +1,17 @@
 const { v4: uuidv4 } = require('uuid')
 let students = require("../students");
 
-
-
-
+const jwt_decode = require("jwt-decode");
+const { authTeacher } = require("../auth_middleware");
 
 
 const getStudents = (req, reply) => {
+    authTeacher(req, reply, jwt_decode);
     reply.send(students);
 }
 
 const getStudent = (req, reply) => {
+    authTeacher(req, reply, jwt_decode);
     const { id } = req.params;
 
     const student = students.find((students) => students.id === id);
@@ -19,6 +20,7 @@ const getStudent = (req, reply) => {
 }
 
 const addStudent = (req, reply) => {
+    authTeacher(req, reply, jwt_decode);
     const { email } = req.body
     const { password } = req.body
     const { name } = req.body;
@@ -41,6 +43,8 @@ const addStudent = (req, reply) => {
 }
 
 const deleteStudent = (req, reply) => {
+    authTeacher(req, reply, jwt_decode);
+
     const { id } = req.params
 
     students = students.filter(student => student.id !== id)
@@ -49,6 +53,8 @@ const deleteStudent = (req, reply) => {
 }
 
 const updateStudent = (req, reply) => {
+    authTeacher(req, reply, jwt_decode);
+
     const { id } = req.params;
     const { name } = req.body;
 

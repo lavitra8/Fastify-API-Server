@@ -4,9 +4,11 @@
  */
 const authStudent = (req, res, jwt_decode) => {
     try {
-        const { token } = req.body;
+        const token = req.headers["authorization"];
         var decoded = jwt_decode(token);
-        if (decoded['actor'] == 'student') {
+        if (decoded['actor'] == 'student' ||
+            decoded['actor'] == 'teacher' ||
+            decoded['actor'] == 'principal') {
             res.send({ 'msg': 'success' });
         } else {
             res.send({ 'msg': 'not authorized' });
@@ -19,9 +21,10 @@ const authStudent = (req, res, jwt_decode) => {
 
 const authTeacher = (req, res, jwt_decode) => {
     try {
-        const { token } = req.body;
+        const token = req.headers["authorization"];
         var decoded = jwt_decode(token);
-        if (decoded['actor'] == 'teacher') {
+        if (decoded['actor'] == 'teacher' ||
+            decoded['actor'] == 'principal') {
             res.send({ 'msg': 'success' });
         } else {
             res.send({ 'msg': 'not authorized' });
@@ -34,7 +37,7 @@ const authTeacher = (req, res, jwt_decode) => {
 
 const authPrincipal = (req, res, jwt_decode) => {
     try {
-        const { token } = req.body;
+        const token = req.headers["authorization"];
         var decoded = jwt_decode(token);
         if (decoded['actor'] == 'principal') {
             res.send({ 'msg': 'success' });
