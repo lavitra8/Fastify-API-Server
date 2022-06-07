@@ -1,5 +1,7 @@
+const { Console } = require('console');
 const { v4:uuidv4 } = require('uuid')
 let classes = require("../classes");
+let students = require("../students")
 
 const getClasses = (req, reply) => {
     reply.send(classes);
@@ -26,6 +28,12 @@ const addClass = (req, reply) => {
 
     classes = [...classes, lecture]
 
+    students.forEach((student) => {
+      if (student_list.includes(student.name)) {
+        student.class_list.push(class_name);
+      }
+    });
+
     reply.code(201).send(lecture)
 }
 
@@ -48,6 +56,12 @@ const updateClass = (req, reply) => {
       ? { class_id, class_name, class_teacher_id, student_list }
       : lecture
   );
+
+  students.forEach((student) => {
+    if (student.name in student_list){
+      student.class_list.push(class_name);
+    }
+  })
 
   lecture = classes.find((lecture) => lecture.class_id === class_id);
 
