@@ -9,7 +9,7 @@ const authStudent = (req, res, jwt_decode) => {
         if (decoded['actor'] == 'student' ||
             decoded['actor'] == 'teacher' ||
             decoded['actor'] == 'principal') {
-            res.send({ 'msg': 'success' });
+            return;
         } else {
             res.send({ 'msg': 'not authorized' });
         }
@@ -25,7 +25,7 @@ const authTeacher = (req, res, jwt_decode) => {
         var decoded = jwt_decode(token);
         if (decoded['actor'] == 'teacher' ||
             decoded['actor'] == 'principal') {
-            res.send({ 'msg': 'success' });
+            return;
         } else {
             res.send({ 'msg': 'not authorized' });
         }
@@ -40,7 +40,7 @@ const authPrincipal = (req, res, jwt_decode) => {
         const token = req.headers["authorization"];
         var decoded = jwt_decode(token);
         if (decoded['actor'] == 'principal') {
-            res.send({ 'msg': 'success' });
+            return;
         } else {
             res.send({ 'msg': 'not authorized' });
         }
