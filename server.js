@@ -34,25 +34,6 @@ fastify.post("/loginStudent", (req, res) => {
   }
 })
 
-/**
- * Author: Sahil
- */
-const jwt_decode = require("jwt-decode");
-const { authStudent, authTeacher, authPrincipal } = require("./auth_middleware");
-fastify.post("/authorizeStudent", async (req, res) => {
-  authStudent(req, res, jwt_decode);
-})
-fastify.post("/authorizeTeacher", async (req, res) => {
-  authStudent(req, res, jwt_decode);
-})
-fastify.post("/authorizePrincpal", async (req, res) => {
-  authStudent(req, res, jwt_decode);
-})
-
-/**
- * Demo for middleware
- */
-
 
 let teachers = require("./teachers");
 fastify.post("/loginTeacher", (req, res) => {
