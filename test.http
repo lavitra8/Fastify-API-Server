@@ -1,0 +1,29 @@
+### GET ALL STUDENTS
+GET http://[::1]:3000/students HTTP/1.1
+
+### GET SINGLE STUDENT
+GET http://[::1]:3000/students/3 HTTP/1.1
+
+### ADD SINGLE STUDENT
+POST http://[::1]:3000/students HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "someone@something.com",
+    "password": "somethingsecret",
+    "name": "New Student",
+    "gender": "Female",
+    "class_list": ["Physics", "Chemistry", "Maths"],
+    "meta_data": "Meta Data"
+}
+
+### DELETE SINGLE STUDENT
+DELETE  http://[::1]:3000/students/3 HTTP/1.1
+
+### UPDATE SINGLE STUDENT
+PUT http://[::1]:3000/students/2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Updated Student"
+}
